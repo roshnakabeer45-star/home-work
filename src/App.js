@@ -1,42 +1,49 @@
 
 
 
+
 import React, { useState } from "react";
+import TaskList from "./TaskList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
+  const [taskName, setTaskName] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [message, setMessage] = useState("Add a task to get started!");
+  const [bgColor, setBgColor] = useState("white");
 
-  
-  const foods = ["Pizza", "Burger", "Biryani", "Pasta"];
+  const handleAddTask = () => {
+    if (taskName.trim() === "") return;
 
-  
-  const [message, setMessage] = useState("Select a food that you love!");
-
-  
-  const handleClick = (foodName) => {
-    setMessage("I love " + foodName + "!");
+    setTasks([...tasks, taskName]);
+    setMessage(`Task added: ${taskName}!`);
+    setTaskName("");
+    setBgColor("lightblue");
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>My Favorite Foods</h1>
+    <div className="container mt-5">
+      <div className="card p-4 mb-4" style={{ backgroundColor: bgColor }}>
+        <h2 className="mb-3">React Task Planner</h2>
 
-    
-      {foods.map((food, index) => (
-        <div key={index} style={{ margin: "10px" }}>
-          {food}
-          <button 
-            onClick={() => handleClick(food)}
-            style={{ marginLeft: "10px" }}
-          >
-            Click
-          </button>
-        </div>
-      ))}
+        <input
+          type="text"
+          className="form-control mb-3"
+          placeholder="Enter task name"
+          value={taskName}
+          onChange={(e) => setTaskName(e.target.value)}
+        />
 
-      
-      <h2 style={{ marginTop: "20px", color: "green" }}>
-        {message}
-      </h2>
+        <button
+          className="btn btn-primary"
+          onClick={handleAddTask}
+        >
+          Add Task
+        </button>
+      </div>
+
+      <TaskList tasks={tasks} message={message} />
     </div>
   );
 }
