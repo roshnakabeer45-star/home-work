@@ -1,17 +1,14 @@
 
 
 
-import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 function App() {
-
-  useEffect(() => {
-    console.log("Welcome message displayed.");
-  }, []); 
-
   return (
-    <div>
-      <h2>Hello, user! Welcome to our site.</h2>
+    <div className="container mt-4">
+      <Navbar />
+      <Outlet />
     </div>
   );
 }
