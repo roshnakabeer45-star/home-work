@@ -17,7 +17,7 @@ const [editedClass, setEditedClass] = useState("");
 const [searchTerm, setSearchTerm] = useState("");
 
 
-// ADD STUDENT
+
 const handleSubmit = (e) => {
 e.preventDefault();
 
@@ -49,13 +49,13 @@ setStudentClass("");
 };
 
 
-// DELETE
+
 const handleDelete = (id) => {
 setStudents(students.filter((s)=> s.id !== id));
 };
 
 
-// EDIT
+
 const handleEdit = (student) => {
 setEditingId(student.id);
 setEditedName(student.name);
@@ -64,7 +64,7 @@ setEditedClass(student.class);
 };
 
 
-// SAVE
+
 const handleSave = () => {
 
 if(editedName.trim()==="" || editedRoll.trim()==="" || editedClass.trim()===""){
@@ -102,13 +102,13 @@ setEditingId(null);
 };
 
 
-// CANCEL
+
 const handleCancel = () =>{
 setEditingId(null);
 };
 
 
-// SEARCH FILTER
+
 const filteredStudents = students.filter((student)=>
 student.name.toLowerCase().includes(searchTerm.toLowerCase())
 );
